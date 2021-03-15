@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
-
+<script type="text/javascript">
+    var contextPath = "${ctx}";
+</script>
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
@@ -25,7 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="css/base.css">
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
 		<script type="text/javascript" src="framework/jquery-1.11.3.min.js" ></script>
-		<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="${ctx}/layui/css/layui.css">
 	    <!--[if lt IE 9]>
 	      	<script src="framework/html5shiv.min.js"></script>
 	      	<script src="framework/respond.min.js"></script>
@@ -74,8 +79,9 @@
 		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>商品分类管理<i class="iconfont icon-dajiantouyou right"></i></a>
 		                <dl>
 		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/commodity.jsp',this)">修改、新增商品分类管理</a></dt>
-		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/sellingGoods.jsp',this)">出售中的商品</a></dt>
-		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/closeGoods.jsp',this)">下架中的商品</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/Product?action=toView',this)">出售中的商品</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/ProductAdd?action=toView',this)">发布中的商品</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/ProductOffShelf?action=toView',this)">下架中的商品</a></dt>
 		                </dl>
 		           	</li>
 		        	<li>
@@ -120,6 +126,7 @@
 			</div>
 			<!-- 核心区域 - 结束 -->
 		</div>
+		
 	</body>
 
 </html>

@@ -15,7 +15,7 @@ public abstract class BaseDaoImpl implements IBaseDao{
 	protected PreparedStatement pstm;
 	
 	
-	static Logger logger = Logger.getLogger(BaseDaoImpl.class);
+	public static Logger logger = Logger.getLogger(BaseDaoImpl.class);
 
 
 	public BaseDaoImpl(Connection connection) {
@@ -68,7 +68,6 @@ public abstract class BaseDaoImpl implements IBaseDao{
 			ResultSet rs = pstm.getGeneratedKeys();
 			if(rs.next()) {
 				id = rs.getLong(1);
-				logger.debug("����������" + id);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

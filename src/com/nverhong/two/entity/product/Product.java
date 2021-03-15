@@ -16,6 +16,7 @@ public class Product implements Serializable{
 	private Integer categoryLevel3Id; 
 	private String fileName; 
 	
+	
 	public Product(Integer id, String name) {
 		this.id = id;
 		this.name = name;

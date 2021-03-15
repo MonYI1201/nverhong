@@ -12,9 +12,6 @@ import com.nverhong.two.utils.EmptyUtils;
 import com.nverhong.two.utils.PrintUtil;
 import com.nverhong.two.utils.ReturnResult;
 
-
-
-
 public abstract class AbstractServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
