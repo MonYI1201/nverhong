@@ -1,7 +1,6 @@
 $(function(){
 	
 	$(window).load(function(){
-		cframeInit();
 		//后台首页的全屏功能的bug，如果不得不取出Iframe的大小变化后的监听事件。
 		$(window).resize(function(){
 			cframeInit();

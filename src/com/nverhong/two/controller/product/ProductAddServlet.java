@@ -11,6 +11,8 @@ import com.nverhong.two.controller.AbstractServlet;
 import com.nverhong.two.service.product.ProductCategoryService;
 import com.nverhong.two.service.product.impl.ProductCategoryServiceImpl;
 import com.nverhong.two.utils.ProductCategoryVo;
+import com.nverhong.two.utils.ReturnResult;
+import com.nverhong.two.utils.UploadUtils;
 
 @WebServlet(urlPatterns = {"/ProductAdd"},name="/ProductAdd")
 public class ProductAddServlet extends AbstractServlet{
@@ -32,5 +34,18 @@ public class ProductAddServlet extends AbstractServlet{
 		List<ProductCategoryVo> productCategoryVoList = productCategoryService.queryAllProductCategoryList();
 		request.setAttribute("productCategoryVoList", productCategoryVoList);
 		return "/tgls/addGoods";
+	}
+	
+	public ReturnResult add (HttpServletRequest request,HttpServletResponse response)throws Exception{
+		ReturnResult result = new ReturnResult();
+		UploadUtils upl = new UploadUtils();
+		upl.setSavePath("E:/GitUp/nverhong/WebRoot/" + upl.getBasePath() + "/");
+		String[] result1 = upl.uploadFile(request);
+		System.out.println(result1[0]);
+		System.out.println(result1[1]);
+		System.out.println(result1[2]);
+		System.out.println(result1[3]);
+		System.out.println(result1[4]);
+		return result;
 	}
 }

@@ -3,37 +3,67 @@ package com.nverhong.two.entity.user;
 public class User {
 
 	private Integer uid;
-	private String uname;
-	private String upassword;
-	private String e_mail;
+	private String loginName;
+	private String userName;
+	private String password;
+	private Integer sex;
+	private String identityCode;
+	private String email;
+	private String mobile;
+	private Integer type;
 	public Integer getUid() {
 		return uid;
 	}
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-	public String getUname() {
-		return uname;
+	public String getLoginName() {
+		return loginName;
 	}
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
-	public String getUpassword() {
-		return upassword;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUpassword(String upassword) {
-		this.upassword = upassword;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getE_mail() {
-		return e_mail;
+	public String getPassword() {
+		return password;
 	}
-	public void setE_mail(String e_mail) {
-		this.e_mail = e_mail;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public User(String uname, String upassword) {
-		super();
-		this.uname = uname;
-		this.upassword = upassword;
+	public Integer getSex() {
+		return sex;
+	}
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+	public String getIdentityCode() {
+		return identityCode;
+	}
+	public void setIdentityCode(String identityCode) {
+		this.identityCode = identityCode;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	
 	

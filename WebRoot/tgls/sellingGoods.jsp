@@ -157,7 +157,8 @@ layui-input-inline {
 						title : '图片',
 						width : 200,
 						templet : function(data) {
-							return '<img src="'+contextPath+'/images/nverhong/'+data.fileName+' ">';
+							console.log(data.fileName);
+							return '<img src=" '+data.fileName+' ">';
 						}
 					}, {
 						field : 'name',
@@ -202,8 +203,6 @@ layui-input-inline {
 				}
 			}
 
-			 
-			
 			$("#button").click(function() {
 				var data = {
 					"keyword" : $("#keyword").val(),

@@ -14,7 +14,6 @@ var myCarousel = null;
 function init(){
 	var win_h = $(window).height();
 	
-	
 	if(win_h >= 900){
 		$(".form_tzgg").height(win_h - 148 - 36);
 	}else if(win_h >= 768 && win_h <= 899){
@@ -42,7 +41,6 @@ function init(){
 	}else{
         myCarousel.reload(options);
 	}
-	
 }
 
 //获取光标
