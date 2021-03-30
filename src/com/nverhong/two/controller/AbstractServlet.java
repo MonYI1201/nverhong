@@ -1,22 +1,27 @@
 package com.nverhong.two.controller;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
+import com.nverhong.two.utils.EmptyUtils;
+import com.nverhong.two.utils.PrintUtil;
+import com.nverhong.two.utils.ReturnResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
-import com.nverhong.two.utils.EmptyUtils;
-import com.nverhong.two.utils.PrintUtil;
-import com.nverhong.two.utils.ReturnResult;
-
+/**
+ * @author MonYI
+ */
 public abstract class AbstractServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	
+	/**
+	 * 反射机制获取类名
+	 * @return
+	 */
 	public abstract Class getServletClass();
 	
 	@Override

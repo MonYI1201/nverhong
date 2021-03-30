@@ -1,9 +1,5 @@
 package com.nverhong.two.service.product.impl;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nverhong.two.dao.product.ProductCategoryDao;
 import com.nverhong.two.dao.product.impl.ProductCategoryDaoImpl;
 import com.nverhong.two.entity.product.ProductCategory;
@@ -13,8 +9,14 @@ import com.nverhong.two.utils.DataSourceUtil;
 import com.nverhong.two.utils.EmptyUtils;
 import com.nverhong.two.utils.ProductCategoryVo;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 
+/**
+ * @author MonYI
+ */
 public class ProductCategoryServiceImpl implements ProductCategoryService{
 	@Override
 	public List<ProductCategoryVo> queryAllProductCategoryList() {

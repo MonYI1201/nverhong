@@ -1,12 +1,15 @@
 package com.nverhong.two.utils;
 
+import com.alibaba.fastjson.JSONObject;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONObject;
-
+/**
+ * io输出
+ * @author MonYI
+ */
 public class PrintUtil {
 	private static void print(String msg,HttpServletResponse response) {
 		PrintWriter writer = null;

@@ -133,7 +133,7 @@ layui-input-inline {
 					height : 400,
 					method : 'GET',
 					contentType : 'charset=UTF-8',
-					url : '/nverhong/ProductOffShelf?action=selectOffShelfProduct&' + paramstr, //数据接口
+					url : contextPath + '//ProductOffShelf?action=selectOffShelfProduct&' + paramstr, //数据接口
 					parseData : function(res) { //res 即为原始返回的数据
 						return {
 							"code" : res.status, //解析接口状态
@@ -158,16 +158,25 @@ layui-input-inline {
 						field : 'fileName',
 						title : '图片',
 						width : 200,
-						templet : function(data) {
-							return '<img src="'+contextPath+'/images/nverhong/'+data.fileName+' ">';
-						}
+							templet: function(data){
+								var str = '<div id="layer-photos-demo" class="layer-photos-demo">';
+								try{
+									for(let i = 0; i < data.picGoodsList.length ; ++i){
+										let image = data.picGoodsList[i].fileUrl
+										str += '<img  layer-src='+image+' src="'+image+'"  width="32%" height="32%" style="margin-right: 10px">';
+									}
+								}catch (e) {
+								}
+								str += '</div>';
+								return str;
+							}
 					}, {
 						field : 'name',
 						title : '商品名称',
 						width : 300,
 
 					}, {
-						field : 'categoryLevel1Id',
+						field : 'categoryName',
 						title : '商品分类',
 						width : 150
 					}, {
@@ -178,7 +187,11 @@ layui-input-inline {
 						field : 'stock',
 						title : '总库存',
 						width : 150
-					}, {
+					},{
+						field : 'sell',
+						title : '销量',
+						width : 150
+					},{
 						title : '操作',
 						width : 150,
 						templet : function() {

@@ -1,17 +1,18 @@
 package com.nverhong.two.dao.product.impl;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nverhong.two.dao.BaseDaoImpl;
 import com.nverhong.two.dao.product.ProductCategoryDao;
-import com.nverhong.two.entity.product.Product;
 import com.nverhong.two.entity.product.ProductCategory;
 import com.nverhong.two.param.ProductCategoryParams;
 import com.nverhong.two.utils.EmptyUtils;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * @author MonYI
+ */
 public class ProductCategoryDaoImpl extends BaseDaoImpl implements ProductCategoryDao{
 
 

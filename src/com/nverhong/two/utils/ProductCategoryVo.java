@@ -1,11 +1,15 @@
 package com.nverhong.two.utils;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.nverhong.two.entity.product.Product;
 import com.nverhong.two.entity.product.ProductCategory;
 
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 商品分类
+ * @author MonYI
+ */
 
 public class ProductCategoryVo implements Serializable {
 

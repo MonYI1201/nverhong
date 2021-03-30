@@ -87,51 +87,38 @@
 					<button type="button" class="layui-btn" id="button">登录</button>
 				</div>
 				<div class="apply">
-					<a href="#">忘记密码</a>
+					<a href="${ctx}/UpdatePwd?action=toView">忘记密码</a>
 				</div>
 			</div>
 
 			<script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
 			<script>
-				 function login(paramstr){
-					$.ajax({
-						url:contextPath+"/Login?action=toLogin&" + paramstr,    //这个异步提交到 /Login urlPatterns = { "/Login" } 指定路径，action反射到方法
-				        method:"post",
-				     	success:function(data){
-						    var str = JSON.parse(data);
-					     	if(str.message == '登陆成功'){
-							window.location.href="frame.jsp";
-					   		}
-					    	if(str.message == '登陆失败'){
-							 window.location.href="/nverhong/Login?action=toView";
-						    }
-					     }
+				layui.use('layer',function () {
+					var layer = layui.layer;
+					$('#button').click(function(){
+						var loginName = $('#loginName').val();
+						var password = $('#password').val();
+						$.ajax({
+							url:contextPath+"/Login?action=toLogin" ,    //这个异步提交到 /Login urlPatterns = { "/Login" } 指定路径，action反射到方法
+							data:{"loginName":loginName,"password":password},
+							method:"post",
+							dataType:"json",
+							success:function(data){
+								console.log(data);
+								if(data.status == 0){
+									window.location.href=contextPath + "/Product?action=toViewFirst";
+								}else{
+									console.log(data.message);
+									layer.msg(data.message);
+								}
+							},
+
+						});
+					});
+
 				});
-	           }
-				function parseParams(data) {
-					try {
-						var tempArr = [];
-						for ( var i in data) {
-							var key = encodeURIComponent(i);
-							var value = encodeURIComponent(data[i]);
-							tempArr.push(key + '=' + value);
-						}
-						var urlParamsStr = tempArr.join('&');
-						return urlParamsStr;
-					} catch (err) {
-						return '';
-					}
-				} 
-				$("#button").click(function() {
-					var data = {
-						"loginName" : $("#loginName").val(),
-						"password" : $("#password").val()
-						}
-					console.log(data)
-					var str = parseParams(data);
-					login(str); 
-				});
-				
+
+
 				</script>
 
 			<div class="tzgg">

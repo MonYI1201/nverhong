@@ -1,32 +1,44 @@
 package com.nverhong.two.service.user.impl;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nverhong.two.dao.user.LoginDao;
 import com.nverhong.two.dao.user.impl.LoginDaoImpl;
 import com.nverhong.two.entity.user.User;
 import com.nverhong.two.service.user.LoginService;
 import com.nverhong.two.utils.DataSourceUtil;
 
+import java.sql.Connection;
+/**
+ * @author MonYI
+ */
 public class LoginServiceImpl implements LoginService {
 
 	@Override
-	public List<User> find(String uname, String pwd) {
+	public User findByLoginName(String uname) {
 		Connection connection = null;
-		List<User> list = new ArrayList<>();
+		User user = null;
 		try {
 			connection = DataSourceUtil.openConnection();
 			LoginDao loginDao = new LoginDaoImpl(connection);
-			list = loginDao.find(uname,pwd);
+			user = loginDao.findByLoginName(uname);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			DataSourceUtil.closeConnection(connection);
 		}
-		return list;
+		return user;
 	}
 
-	
+	@Override
+	public User queryUserListByEmail(String email){
+		Connection connection = null;
+		User user = null;
+		try{
+			connection = DataSourceUtil.openConnection();
+			LoginDao loginDao = new LoginDaoImpl(connection);
+			user = loginDao.queryUserListByEmail(email);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return user;
+	}
 }

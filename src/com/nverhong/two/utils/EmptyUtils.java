@@ -3,9 +3,17 @@ package com.nverhong.two.utils;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * 判空
+ * @author MonYI
+ */
 public class EmptyUtils {
 
-	
+	/**
+	 * 为空返回true 不为空false
+	 * @param obj
+	 * @return
+	 */
 	public static boolean isEmpty(Object obj) {
 		if(obj == null) {
 			return true;
@@ -37,7 +45,7 @@ public class EmptyUtils {
 		return false;
 	}
 	
-	// �жϲ�Ϊ��
+
 	public static boolean isNotEmpty(Object obj) {
 		return  !isEmpty(obj);
 	}

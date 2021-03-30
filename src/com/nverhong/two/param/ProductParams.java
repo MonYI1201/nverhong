@@ -1,7 +1,10 @@
 package com.nverhong.two.param;
 
 import com.nverhong.two.entity.product.Product;
-
+/**
+ * 分页增强类
+ * @author MonYI
+ */
 public class ProductParams extends Product {
 
 

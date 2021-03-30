@@ -1,29 +1,20 @@
 package com.nverhong.two.utils;
 
-import java.io.File;  
-import java.io.IOException;  
-import java.text.SimpleDateFormat;  
-import java.util.ArrayList;  
-import java.util.Arrays;  
-import java.util.Date;  
-import java.util.HashMap;  
-import java.util.Iterator;  
-import java.util.List;  
-import java.util.Map;  
-import java.util.Random;  
-  
-import javax.servlet.http.HttpServletRequest;  
-  
-import org.apache.commons.fileupload.FileItem;  
-import org.apache.commons.fileupload.FileUploadException;  
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;  
-import org.apache.commons.fileupload.servlet.ServletFileUpload;  
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
   
 /** 
- * 文件上传工具类 
- *  
-
- */  
+ * 文件上传工具类
+ * @author MonYI
+ **/
 public class UploadUtils {  
     /** 
      * 表单字段常量 
@@ -120,22 +111,19 @@ public class UploadUtils {
         }
         
         
-        saveUrl = request.getContextPath() + "/" + basePath + "/";  
+        saveUrl = request.getContextPath() + basePath + "/";  
 
        
         File uploadDir = new File(savePath);  
-        if (contentType == null || !contentType.startsWith("multipart")) {  
-            // TODO  
-            System.out.println("请求不包含multipart/form-data流");  
-            errorInfo = "请求不包含multipart/form-data流";  
-        } else if (maxSize < contentLength) {  
+         if (maxSize < contentLength) {  
             // TODO  
             System.out.println("上传文件大小超出文件最大大小");  
             errorInfo = "上传文件大小超出文件最大大小[" + maxSize + "]";  
         } else if (!ServletFileUpload.isMultipartContent(request)) {  
             // TODO  
-            errorInfo = "请选择文件";  
-        } else if (!uploadDir.isDirectory()) {// 检查目录  
+            errorInfo = "请选择文件";
+             // 检查目录
+        } else if (!uploadDir.isDirectory()) {
             // TODO  
             errorInfo = "上传目录[" + savePath + "]不存在";  
         } else if (!uploadDir.canWrite()) {  
@@ -225,8 +213,9 @@ public class UploadUtils {
                 Map<String, String> fields = new HashMap<String, String>();  
                 while (iter.hasNext()) {  
                     FileItem item = iter.next();  
-                    // 处理所有表单元素和文件域表单元素  
-                    if (item.isFormField()) { // 表单元素  
+                    // 处理所有表单元素和文件域表单元素
+                    // 表单元素
+                    if (item.isFormField()) {
                         String name = item.getFieldName();  
                         String value = item.getString();  
                         fields.put(name, value);  
@@ -252,12 +241,14 @@ public class UploadUtils {
     private String saveFile(FileItem item) {  
         String error = "true";  
         String fileName = item.getName();  
-        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();  
-  
-        if (item.getSize() > maxSize) { // 检查文件大小  
+        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+
+        // 检查文件大小
+        if (item.getSize() > maxSize) {
             // TODO  
-            error = "上传文件大小超过限制";  
-        } else if (!Arrays.<String> asList(extMap.get(dirName).split(",")).contains(fileExt)) {// 检查扩展名  
+            error = "上传文件大小超过限制";
+            // 检查扩展名
+        } else if (!Arrays.<String> asList(extMap.get(dirName).split(",")).contains(fileExt)) {
             error = "上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。";  
         } else {  
             String newFileName;  

@@ -2,6 +2,10 @@ package com.nverhong.two.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+/**
+ * 密码加密
+ * @author MonYI
+ */
 public class SecurityUtils {
 
     public static String md5Hex(String value) {

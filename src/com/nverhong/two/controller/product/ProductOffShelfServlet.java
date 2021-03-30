@@ -1,17 +1,13 @@
 package com.nverhong.two.controller.product;
 
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.nverhong.two.controller.AbstractServlet;
+import com.nverhong.two.entity.product.Picture;
 import com.nverhong.two.entity.product.Product;
+import com.nverhong.two.service.product.ProductAddService;
 import com.nverhong.two.service.product.ProductCategoryService;
 import com.nverhong.two.service.product.ProductOffShelfService;
 import com.nverhong.two.service.product.ProductService;
+import com.nverhong.two.service.product.impl.ProductAddServiceImpl;
 import com.nverhong.two.service.product.impl.ProductCategoryServiceImpl;
 import com.nverhong.two.service.product.impl.ProductOffShelfServiceImpl;
 import com.nverhong.two.service.product.impl.ProductServiceImpl;
@@ -20,6 +16,18 @@ import com.nverhong.two.utils.Pager;
 import com.nverhong.two.utils.ProductCategoryVo;
 import com.nverhong.two.utils.ReturnResult;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 商品下架控制器
+ * @author MonYI
+ */
+
 @WebServlet(urlPatterns = {"/ProductOffShelf"},name="/ProductOffShelf")
 public class ProductOffShelfServlet extends AbstractServlet{
 
@@ -27,12 +35,18 @@ public class ProductOffShelfServlet extends AbstractServlet{
 	private ProductOffShelfService productOffShelfService;
 	private ProductService productService;
 	private ProductCategoryService productCategoryService;
-	
+	private ProductAddService productAddService;
+	private Picture picture;
+	private Product product;
+
 	@Override
 	public void init() throws ServletException {
 		productOffShelfService = new ProductOffShelfServiceImpl();
 		productService = new ProductServiceImpl();
 		productCategoryService = new ProductCategoryServiceImpl();
+		productAddService = new ProductAddServiceImpl();
+		picture = new Picture();
+		product = new Product();
 	}
 
 	@Override
@@ -47,15 +61,15 @@ public class ProductOffShelfServlet extends AbstractServlet{
 		return "/tgls/closeGoods";
 	}
 	
-	public ReturnResult ProductoffShelf(HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public ReturnResult productOffShelf(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		ReturnResult result = new ReturnResult();
 		
 		String productId = request.getParameter("id");
 		Integer id = 0;
 		if(productId != null) {
-			id = Integer.valueOf(productId).intValue();
+			id = Integer.parseInt(productId);
 		}
-		Product product = productOffShelfService.offShelfProductById(id);
+		product = productOffShelfService.offShelfProductById(id);
 		productOffShelfService.offShelfProductAdd(product);
 		productOffShelfService.productDelete(id);
 		return result;
@@ -79,6 +93,20 @@ public class ProductOffShelfServlet extends AbstractServlet{
 		Integer size = productOffShelfService.getOffShelfProductRowCount(categoryId, level, keyWord);
 		Pager pager = new Pager(size,rowPerPage,currentPage);
 		List<Product> list = productOffShelfService.offShelfProductList(pager, categoryId, level, keyWord);
+
+		for(Product product1:list){
+			String s = product1.getPid();
+			String[] arr = s.split(",");
+			List<Picture> tempPic1 = new ArrayList<>();
+			for(int i=0  ; i< arr.length; i++){
+				picture = productAddService.findPictureById(Integer.parseInt(arr[i]));
+				System.out.println(picture.getFileUrl());
+				tempPic1.add(picture);
+			}
+			product1.setPicGoodsList(tempPic1);
+			result.setData(product1);
+		}
+
 		result.setData(list);
 		result.setMessage("操作成功");
 		result.setTotal(size.intValue());
@@ -87,10 +115,10 @@ public class ProductOffShelfServlet extends AbstractServlet{
 	
 	public ReturnResult delete(HttpServletRequest req,HttpServletResponse resp)throws Exception{
 		ReturnResult result = new ReturnResult();
-		String OffShelf = req.getParameter("id");
+		String offShelf = req.getParameter("id");
 		Integer id = 0;
-		if(OffShelf != null) {
-			id = Integer.valueOf(OffShelf).intValue();
+		if(offShelf != null) {
+			id = Integer.valueOf(offShelf).intValue();
 		}
 		int num = productOffShelfService.offShelfProductDelete(id);
 		return result;
@@ -98,10 +126,10 @@ public class ProductOffShelfServlet extends AbstractServlet{
 	
 	public ReturnResult up(HttpServletRequest req,HttpServletResponse resp)throws Exception{
 		ReturnResult result = new ReturnResult();
-		String OffShelf = req.getParameter("id");
+		String offShelf = req.getParameter("id");
 		Integer id = 0;
-		if(OffShelf != null) {
-			id = Integer.valueOf(OffShelf).intValue();
+		if(offShelf != null) {
+			id = Integer.valueOf(offShelf).intValue();
 		}
 		productOffShelfService.offShelfProductUp(id);
 		productService.productUp(id);

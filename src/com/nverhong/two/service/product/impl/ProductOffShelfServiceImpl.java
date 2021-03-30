@@ -1,12 +1,6 @@
 package com.nverhong.two.service.product.impl;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.nverhong.two.dao.product.ProductDao;
 import com.nverhong.two.dao.product.ProductOffShelfDao;
-import com.nverhong.two.dao.product.impl.ProductDaoImpl;
 import com.nverhong.two.dao.product.impl.ProductOffShelfDaoImpl;
 import com.nverhong.two.entity.product.Product;
 import com.nverhong.two.param.ProductParams;
@@ -15,10 +9,17 @@ import com.nverhong.two.utils.DataSourceUtil;
 import com.nverhong.two.utils.EmptyUtils;
 import com.nverhong.two.utils.Pager;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * @author MonYI
+ */
 public class ProductOffShelfServiceImpl implements ProductOffShelfService {
 
+	@Override
 	public Product offShelfProductById(Integer id) {
-		Product product = new Product();
+		Product product = null;
 		Connection connection = null;
 		 try {
 			 connection = DataSourceUtil.openConnection();
@@ -69,7 +70,7 @@ public class ProductOffShelfServiceImpl implements ProductOffShelfService {
 			connection = DataSourceUtil.openConnection();
 			ProductOffShelfDao productDao = new ProductOffShelfDaoImpl(connection);
 			ProductParams params = new ProductParams();
-			params.openPage((pager.getCurrentPage() - 1) * pager.getRowPerPage(),pager.getRowPerPage());
+			params.openPage((pager.getCurrentPage() - 1) * pager.getRowPerPage(), pager.getRowPerPage());
 			
 			if(!EmptyUtils.isEmpty(categoryId)) {
 			   params.setCategoryId(Integer.parseInt(categoryId));

@@ -80,7 +80,6 @@
 		                <dl>
 		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/commodity.jsp',this)">修改、新增商品分类管理</a></dt>
 		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/Product?action=toView',this)">出售中的商品</a></dt>
-		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/ProductAdd?action=toView',this)">发布中的商品</a></dt>
 		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('${ctx}/ProductOffShelf?action=toView',this)">下架中的商品</a></dt>
 		                </dl>
 		           	</li>

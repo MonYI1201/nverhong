@@ -1,5 +1,9 @@
 package com.nverhong.two.utils;
 
+/**
+ * json数据返回
+ * @author MonYI
+ */
 public class Constants {
     /**
      * json 格式返回数据 status 标示说明

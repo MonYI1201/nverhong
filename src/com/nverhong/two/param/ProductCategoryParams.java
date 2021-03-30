@@ -2,6 +2,10 @@ package com.nverhong.two.param;
 
 import com.nverhong.two.entity.product.ProductCategory;
 
+/**
+ * 商品分类增强类
+ * @author MonYI
+ */
 public class ProductCategoryParams extends ProductCategory {
 
 	private static final long serialVersionUID = 1L;

@@ -2,6 +2,10 @@ package com.nverhong.two.utils;
 
 import java.io.Serializable;
 
+/**
+ * 分页
+ * @author MonYI
+ */
 public class Pager implements Serializable{
 	
 

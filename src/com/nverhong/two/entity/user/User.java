@@ -1,5 +1,8 @@
 package com.nverhong.two.entity.user;
-
+/**
+ * 用户信息实体类
+ * @author MonYI
+ */
 public class User {
 
 	private Integer uid;

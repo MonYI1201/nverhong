@@ -2,11 +2,15 @@ package com.nverhong.two.entity.product;
 
 import java.io.Serializable;
 
+/**
+ * 商品分类实体类
+ * @author MonYI
+ */
 public class ProductCategory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id; 
+	private Integer id;
 	private String name; 
 	private Integer parentId; 
 	private Integer type; 

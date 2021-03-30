@@ -7,6 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * 数据库连接池
+ * @author MonYI
+ */
 public class DataSourceUtil {
 
 	private static String driver;

@@ -1,22 +1,64 @@
 package com.nverhong.two.entity.product;
 
 import java.io.Serializable;
-
+import java.util.List;
+/**
+ * 商品信息实体类
+ * @author MonYI
+ */
 public class Product implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id; 
-	private String name; 
+	private String name;
 	private String description; 
 	private Float price; 
-	private Integer stock; 
+	private Integer stock;
+	private Integer sell;
 	private Integer categoryLevel1Id;
-	private Integer categoryLevel2Id; 
-	private Integer categoryLevel3Id; 
-	private String fileName; 
+	private Integer categoryLevel2Id;
+	private Integer categoryLevel3Id;
+	private String pid;
+	private String pid2;
+	private String categoryName;
+
+
+	public Integer getSell() {
+		return sell;
+	}
+
+	public void setSell(Integer sell) {
+		this.sell = sell;
+	}
+
+
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+	/**
+	 * 商品图片列表
+	 */
+	private List<Picture> picGoodsList;
+	/**
+	 * 品质检验
+	 */
+	private List<Picture> picCheckList;
 	
-	
+	public String getPid2() {
+		return pid2;
+	}
+
+	public void setPid2(String pid2) {
+		this.pid2 = pid2;
+	}
+
 	public Product(Integer id, String name) {
 		this.id = id;
 		this.name = name;
@@ -72,11 +114,28 @@ public class Product implements Serializable{
 	public void setCategoryLevel3Id(Integer categoryLevel3Id) {
 		this.categoryLevel3Id = categoryLevel3Id;
 	}
-	public String getFileName() {
-		return fileName;
+
+	public String getPid() {
+		return pid;
 	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
-	
+
+	public List<Picture> getPicGoodsList() {
+		return picGoodsList;
+	}
+
+	public List<Picture> getPicCheckList() {
+		return picCheckList;
+	}
+
+	public void setPicGoodsList(List<Picture> picGoodsList) {
+		this.picGoodsList = picGoodsList;
+	}
+
+	public void setPicCheckList(List<Picture> picCheckList) {
+		this.picCheckList = picCheckList;
+	}
 }
